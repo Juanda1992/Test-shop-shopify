@@ -6,9 +6,18 @@
         "padding_top": 28,
         "padding_bottom": 28
       }
+    },
+    "c0708387-8e0a-4cfd-b9a5-76f20dca1ca5": {
+      "type": "custom-section",
+      "settings": {
+        "image": "shopify:\/\/shop_images\/surf.webp",
+        "title": "Título de ejemplo",
+        "text": "<p>Este es un texto de ejemplo que puedes editar con el editor de texto enriquecido.<\/p>"
+      }
     }
   },
   "order": [
-    "main"
+    "main",
+    "c0708387-8e0a-4cfd-b9a5-76f20dca1ca5"
   ]
 }
