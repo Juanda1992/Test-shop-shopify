@@ -5,7 +5,6 @@
         <li class="page-item"><a href="{{ paginate.previous.url }}" class="page-link">{{ paginate.previous.title }}</a></li>
         {% endif %}
         
-  
         {% for part in paginate.parts %}
         {% if part.is_link %}
             <li class="page-item"><a href="{{ part.url }}" class="page-link">{{ part.title }}</a></li>
