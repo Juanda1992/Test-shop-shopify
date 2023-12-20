@@ -1,40 +1,15 @@
-<div class="wrapper">
-  <div class="image">
-    {{ section.settings.image | img_url: 'master' | img_tag }}
-  </div>
-  <div class="title">
-    {{ section.settings.title }}
-  </div>
-  <div class="text">
-    {{ section.settings.text }}
+<div class="container">
+  <div class="row">
+    <div class="col-md-8">
+      <h3>{{ section.settings.title }}</h3>
+      {{ section.settings.text }}
+    </div>
+    <div class="col-md-4">
+      <img src="{{ section.settings.image | img_url: 'master' }}" alt="Imagen" class="img-fluid">
+    </div>
   </div>
 </div>
 
-<style>
-    .wrapper {
-      display: grid;
-      grid-template-columns: 70% 30%;
-      grid-gap: 10px;
-      grid-auto-rows: minmax(100px, auto);
-    }
-    
-    .image {
-      grid-column: 2;
-      grid-row: 1;
-    }
-    
-    .title {
-      grid-column: 1;
-      grid-row: 1;
-      font-size: 24px;
-      font-weight: bold;
-    }
-    
-    .text {
-      grid-column: 1;
-      grid-row: 2;
-    }
-</style>
 
 {% schema %}
     {
