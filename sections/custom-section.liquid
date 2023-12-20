@@ -1,9 +1,9 @@
 <div class="container">
   <div class="row">
     <div class="col-md-8 center-vertical text-left">
-      <h3>{{ section.settings.title }}</h3>
-      {{ section.settings.text }}
-    </div>
+        {% render 'text-custom-title' %}
+        {% render 'text-custom-rich-text' %}
+        </div>
     <div class="col-md-4">
       <img src="{{ section.settings.image | img_url: 'master' }}" alt="Imagen" class="img-fluid">
     </div>
