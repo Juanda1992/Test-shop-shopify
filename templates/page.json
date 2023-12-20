@@ -6,19 +6,9 @@
         "padding_top": 28,
         "padding_bottom": 28
       }
-    },
-    "b8daab1e-a798-4318-a2ee-ed5de4a1d7cb": {
-      "type": "custom-liquid",
-      "settings": {
-        "custom_liquid": "lorem iosu",
-        "color_scheme": "",
-        "padding_top": 40,
-        "padding_bottom": 52
-      }
     }
   },
   "order": [
-    "main",
-    "b8daab1e-a798-4318-a2ee-ed5de4a1d7cb"
+    "main"
   ]
 }
