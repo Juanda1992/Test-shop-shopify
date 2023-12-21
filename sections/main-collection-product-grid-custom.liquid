@@ -169,10 +169,12 @@
               {%- endfor -%}
             </ul>
 
-            {% comment %} {%- if paginate.pages > 1 -%}
+            {%- if paginate.pages > 1 -%}
               {% render 'pagination', paginate: paginate, anchor: '' %}
-            {%- endif -%} {% endcomment %}
-            {% render 'pagination-custom' %}
+            {%- endif -%} 
+            {% comment %} {% render 'pagination-custom', paginate : paginate %} {% endcomment %}
+
+            
           </div>
         {%- endif -%}
       </div>
@@ -185,7 +187,7 @@
 
 {% schema %}
 {
-  "name": "t:sections.main-collection-product-grid.name",
+  "name": "t:sections.main-collection-product-grid-custom.name",
   "class": "section",
   "settings": [
     {
