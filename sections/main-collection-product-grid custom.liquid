@@ -169,10 +169,10 @@
               {%- endfor -%}
             </ul>
 
-            {%- if paginate.pages > 1 -%}
-              {% comment %} {% render 'pagination', paginate: paginate, anchor: '' %} {% endcomment %}
-              {% render 'pagination-custom' %}
-            {%- endif -%}
+            {% comment %} {%- if paginate.pages > 1 -%}
+              {% render 'pagination', paginate: paginate, anchor: '' %}
+            {%- endif -%} {% endcomment %}
+            {% render 'pagination-custom' %}
           </div>
         {%- endif -%}
       </div>
