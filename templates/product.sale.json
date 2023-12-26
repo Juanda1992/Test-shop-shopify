@@ -3,6 +3,9 @@
     "main": {
       "type": "main-product-sale",
       "settings": {
+        "image_url_1": "shopify:\/\/shop_images\/twitter.png",
+        "image_url_2": "shopify:\/\/shop_images\/pinterest.png",
+        "image_url_3": "shopify:\/\/shop_images\/facebook.png"
       }
     }
   },

@@ -1,12 +1,211 @@
-<div id="main">
-	<h1 id="product_title">{{ product.title }}</h1>
+{% comment %} {{ 'product-detail-page-mockup.css' | asset_url | stylesheet_tag }} {% endcomment %}
+
+{%  assign current_product = product.selected_or_first_available_variant  %}
+{%  assign product_image = current_product.featured_image |  default : product.featured_image  %}
+
+<div class="product-detail-page-mockup-T5T">
+
+  <div class="owl-container">
+  <div class="owl-carousel owl-theme">
+
+  </div>
+  </div>
+  <div class="product-card-RRb">
+    <div class="auto-group-dg6d-hXX">
+      <p class="basic-hooded-sweatshirt-in-pink-RyK">Basic hooded sweatshirt in pink</p>
+      <img class="divider-v9P" src="REPLACE_IMAGE:1:535"/>
+    </div>
+    <div class="auto-group-nnpz-SNd">
+      <div class="product-gallery-zQ9">
+        <div class="auto-group-adpm-syj">
+          <img class="prev-btn-XoP" src="../assets/prev-btn.png"/>
+          <img class="next-btn-UCq" src="../assets/next-btn.png"/>
+        </div>
+        <div class="images-preview-9Jy">
+          {% for image in product.images %}
+              <img class="image-sEy image-UPB image-Cpy image-Z" src="{{ image |  img_url: 'medium'}}" alt="{{ image.alt }}" >
+            {% endfor %}
+        </div>
+      </div>
+      <div class="auto-group-ngkt-UpR">
+        <div class="sidebar-cvd">
+          {% form "product", product %}
+
+          <form method="post" action="/cart/add">  
+          <div class="price-wi1">
+            {% if product.compare_at_price > product.price %}
+              <!-- El producto está en oferta, mostrar el precio rebajado y el precio original tachado -->
+              <div class="price-g9o">${{ current_product.price | money_without_currency }}</div>
+              <div class="price-old-BsF">${{ current_product.compare_at_price | money_without_currency }}</div>
+            {% else %}
+              <!-- El producto no está en oferta, mostrar solo el precio original -->
+              <div class="price-g9o">${{ current_product.price | money_without_currency }}</div>
+            {% endif %}
+          </div>
+
+         
+
+            {% comment %} <div class="color-switcher-4w3">
+              <p class="color-C1f">Color</p>
+              <div class="color-j1b" id="color-switcher">
+                {% assign selected_variant_color = product.selected_or_first_available_variant.option1 %}
+            
+                {% for variant in product.variants %}
+                  {% if variant.available %}
+                    <input type="checkbox" id="color-{{ variant.id }}" class="color-checkbox" value="{{ variant.option1 }}" {% if variant.option1 == selected_variant_color %}checked{% endif %}>
+                    <label for="color-{{ variant.id }}" style="background-color: {{ variant.option1 }};"></label>
+                  {% endif %}
+                {% endfor %}
+            
+                <p class="pink-SaD selected-color-SaD"><span id="selected-color">{{ selected_variant_color }}</span></p>
+              </div>
+            </div> {% endcomment %}
+            <div class="color-switcher-4w3">
+              <p class="color-C1f">Color</p>
+              <div class="color-j1b" id="color-switcher">
+                {% assign selected_variant_color = product.selected_or_first_available_variant.option1 %}
+                <select class="please-select-L3K" aria-placeholder="Please select">
+                  {% for variant in product.variants %}
+                    {% if variant.available %}
+                      <option value="{{ variant.id }}">
+                        {{ variant.option1 }}
+                      </option>
+                    {% else %}
+                      <option value="{{ variant.id }}" disabled="disabled">
+                        {{ variant.option1 }}
+                      </option>
+                    {% endif %}
+                  {% endfor %}
+                </select>
+                <p class="pink-SaD selected-color-SaD"><span id="selected-color">{{ selected_variant_color }}</span></p>
+              </div>
+            </div>
+
+
+            <label for="product-option">Options</label>
+            <select class="product-select" name="id" id="variantSelect">
+              {% for variant in product.variants %}
+                <option {% if current_product.id == variant.id %}
+                  selected
+                {% endif %}
+                value="{{ variant.id }}"
+                data-color="{{ variant.option1 | default: '' }}"
+                data-size="{{ variant.option2 | default: '' }}">
+                  {{ variant.title }}
+                </option>
+              {% endfor %}
+            </select>
+                  
+
+            <div class="form-default-icon-agR">
+              <p class="label-JcR">Size</p>
+              
+              <div class="input-CSu">
+                <select class="please-select-L3K" aria-placeholder="Please select">
+                  {% for variant in product.variants %}
+                    {% if variant.available %}
+                      <option value="{{ variant.id }}">
+                        {{ variant.option2 }}
+                      </option>
+                    {% else %}
+                      <option value="{{ variant.id }}" disabled="disabled">
+                        {{ variant.option2 }}
+                      </option>
+                    {% endif %}
+                  {% endfor %}
+                </select>
+                <img class="down-chevron-sJ9" src="./assets/down-chevron.png"/>
+              </div>
+              
+            </div>
+          
+
+
+          <div class="sharing-AHF">
+            <div class="share--gFb">Share:</div>
+            <img class="facebook-12y" src="{{ section.settings.image_url_1| img_url: 'master'}}"/>
+            <img class="twitter-iTB" src="{{ section.settings.image_url_2 | img_url: 'master'}}"/>
+            <img class="pinterest-3EZ" src="{{ section.settings.image_url_3 |img_url: 'master' }}"/>
+          </div>
+          
+          <input type="hidden" name="id" value="{{ product.variants.first.id }}" />
+          <input min="1" type="number" id="quantity" name="quantity" value="1" style="visibility: hidden;"/>
+          <button class="btn-solid-regular-icon-ZTo" type="submit" value="Add to cart" >
+            <div class="btn-text-fWq">
+              <img class="cart-dCm" src="../assets/cart.png"/>
+              <div class="add-to-cart-m45">Add to cart</div>
+            </div>
+          </button>
+        </div>
+
+        </form>
+
+        {% endform %}
+
+        <div class="accordion-edf" id="variantInfo">
+          <span class="accordion-edf-sub-0">Color: </span>
+          <span class="accordion-edf-sub-1"> </span>
+          <span class="accordion-edf-sub-2"> Size:  </span>
+          <span class="accordion-edf-sub-3"></span>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
-{% schema %}
-    {
-      "name": "main-product-sale",
-      "tag": "section",
-      "class": "section",
-        "settings": []
+<style>
+  .product-detail-page-mockup-T5T .product-card-RRb .auto-group-nnpz-SNd .product-gallery-zQ9 .images-preview-9Jy .video-6os {
+    {% for image in product.images %}
+      background-image: url('{{ image.url | img_url: 'master' }}')  
+    {% endfor %}
     }
+</style>
+<script>
+  document.getElementById('variantSelect').addEventListener('change', function() {
+    var select = document.getElementById('variantSelect');
+    var variantInfo = document.getElementById('variantInfo');
+
+    var selectedOption = select.options[select.selectedIndex];
+
+    // Obtén los datos de color y tamaño de los atributos de datos de la opción seleccionada
+    var color = selectedOption.getAttribute('data-color');
+    var size = selectedOption.getAttribute('data-size');
+
+    // Actualiza el contenido del div con la información de la opción seleccionada
+    variantInfo.innerHTML = `
+      <span class="accordion-edf-sub-0">Color: &nbsp;</span>
+      <span class="accordion-edf-sub-1">${color || ''},&nbsp; </span>
+      <span class="accordion-edf-sub-2">Size:&nbsp; </span>
+      <span class="accordion-edf-sub-3">${size || ''}</span>
+    `;
+  });
+</script>
+
+{% schema %}
+  {
+    "name": "Product Page custom",
+    "class": "produc-sale-custom",
+    "settings": [
+      {
+        "type": "image_picker",
+        "label": "social media",
+        "id": "image_url_1"
+      }, {
+        "type": "image_picker",
+        "label": "social media",
+        "id": "image_url_2"
+      }, {
+        "type": "image_picker",
+        "label": "social media",
+        "id": "image_url_3"
+      }
+    ],
+    "presets": [
+      {
+        "name": "Product-page",
+        "category": "Personalizado"
+      }
+    ]
+
+  }
 {% endschema %}

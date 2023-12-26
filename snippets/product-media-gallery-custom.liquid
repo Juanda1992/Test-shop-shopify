@@ -1,0 +1,93 @@
+<h1> {{ product.title }}</h1>
+<div class="product_images">
+    <div class="slider-for">
+        {% for image in product.images %}
+            <div class="prd_img2">
+                <img src="{{ image | img_url : 'master' }}" alt="{{ image.alt }}" {% if forloop.first %}width="600px" height="600px"{% else %}width="100%" height="auto"{% endif %}> 
+            </div>
+        {% endfor %}
+    </div>
+
+
+    <div class="slider-nav thumb_images">
+        {% for image in product.images %}
+            <div class="prd_img">
+                <img src="{{ image |  img_url: 'medium'}}" alt="{{ image.alt }}" >
+            </div>
+        {% endfor %}
+    </div>
+</div>
+
+<style>
+
+button.slick-prev.slick-arrow {
+    background-color: black;
+    display: block;
+}
+
+.prd_img2{
+    width : 600px;
+    height: 600px;
+    object-fit: cover;
+}
+  .product_images {
+    width: 80%;
+    margin: auto;
+  }
+
+  .slider-for,
+  .slider-nav {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+
+  .prd_img {
+    width: 100%;
+    max-width: 500px; /* Ajusta el ancho máximo según tus necesidades */
+    margin: 0 auto;
+  }
+
+  .prd_img img {
+    width: 100%;
+    height: auto;
+    border: 1px solid #ddd; /* Agrega un borde opcional para separar las imágenes */
+    border-radius: 5px; /* Agrega esquinas redondeadas */
+  }
+
+  /* Estilos para las miniaturas */
+  .thumb_images .prd_img {
+    width: 80px; /* Ancho de las miniaturas */
+    margin-right: 5px;
+  }
+
+  .thumb_images .prd_img img {
+    width: 100%;
+    height: auto;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
+</style>
+
+  
+ <script>
+     $('.slider-for').slick({
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        arrows: true,
+        autoplay: true,
+        autoplaySpeed: 2000,
+        fade: true,
+        asNavFor: '.slider-nav'
+      });
+      $('.slider-nav').slick({
+        slidesToShow: 3,
+        slidesToScroll: 1,
+        asNavFor: '.slider-for',
+        dots: true,
+        centerMode: true,
+        focusOnSelect: true
+      });
+ </script>
+
+ 
