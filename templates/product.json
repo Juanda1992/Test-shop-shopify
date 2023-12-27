@@ -32,7 +32,7 @@
         "d3858d03-5ea0-470f-82f0-a811a75dee69": {
           "type": "custom_liquid",
           "settings": {
-            "custom_liquid": "<h2 style=\"color:red; text-align:center;\">{{ product.metafields.custom.sale }}<\/h2>"
+            "custom_liquid": "<h2 style=\"color:red; text-align:left;\">{{ product.metafields.custom.sale }}<\/h2>"
           }
         },
         "variant_picker": {
