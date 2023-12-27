@@ -32,10 +32,7 @@
         "variant_picker": {
           "type": "variant_picker",
           "settings": {
-            "picker_type": "button",
-            "image_url_1": "shopify:\/\/shop_images\/facebook.png",
-            "image_url_2": "shopify:\/\/shop_images\/twitter.png",
-            "image_url_3": "shopify:\/\/shop_images\/pinterest.png"
+            "picker_type": "button"
           }
         },
         "quantity_selector": {
@@ -103,6 +100,12 @@
           "settings": {
             "share_label": "Share"
           }
+        },
+        "1bff6b64-7f6e-40db-9f65-d2b53195bbf2": {
+          "type": "image",
+          "settings": {
+            "image_url_1": "shopify:\/\/shop_images\/facebook.png"
+          }
         }
       },
       "block_order": [
@@ -118,7 +121,8 @@
         "collapsible-row-1",
         "collapsible-row-2",
         "collapsible-row-3",
-        "share"
+        "share",
+        "1bff6b64-7f6e-40db-9f65-d2b53195bbf2"
       ],
       "settings": {
         "enable_sticky_info": true,
