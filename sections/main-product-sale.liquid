@@ -1,152 +1,116 @@
 {% comment %} {{ 'product-detail-page-mockup.css' | asset_url | stylesheet_tag }} {% endcomment %}
+{% assign current_product = product.selected_or_first_available_variant %}
+{% assign product_image = current_product.featured_image | default: product.featured_image %}
 
-{%  assign current_product = product.selected_or_first_available_variant  %}
-{%  assign product_image = current_product.featured_image |  default : product.featured_image  %}
+{{ 'owl.carousel.min.css' | asset_url | stylesheet_tag }}
+{{ 'owl.theme.default.min.css' | asset_url | stylesheet_tag }}
 
-<div class="product-detail-page-mockup-T5T">
+<div class="container">
+  <div class="row">
+    <h1 class="product-title-custom">{{ product.title }}</h1>
 
-  <div class="owl-container">
-  <div class="owl-carousel owl-theme">
-
-  </div>
-  </div>
-  <div class="product-card-RRb">
-    <div class="auto-group-dg6d-hXX">
-      <p class="basic-hooded-sweatshirt-in-pink-RyK">Basic hooded sweatshirt in pink</p>
-      <img class="divider-v9P" src="REPLACE_IMAGE:1:535"/>
-    </div>
-    <div class="auto-group-nnpz-SNd">
-      <div class="product-gallery-zQ9">
-        <div class="auto-group-adpm-syj">
-          <img class="prev-btn-XoP" src="../assets/prev-btn.png"/>
-          <img class="next-btn-UCq" src="../assets/next-btn.png"/>
-        </div>
-        <div class="images-preview-9Jy">
+    <div class="col-6">
+      <div class="owl-container">
+        <div class="owl-carousel owl-theme ">
           {% for image in product.images %}
-              <img class="image-sEy image-UPB image-Cpy image-Z" src="{{ image |  img_url: 'medium'}}" alt="{{ image.alt }}" >
-            {% endfor %}
+            <div class="item">
+              <img class="card-img-top card-img-top-custom" src="{{ image | img_url: 'master'}}" alt="{{ image.alt }}">
+            </div>
+          {% endfor %}
         </div>
       </div>
-      <div class="auto-group-ngkt-UpR">
-        <div class="sidebar-cvd">
-          {% form "product", product %}
+    </div>
 
-          <form method="post" action="/cart/add">  
-          <div class="price-wi1">
-            {% if product.compare_at_price > product.price %}
-              <!-- El producto está en oferta, mostrar el precio rebajado y el precio original tachado -->
-              <div class="price-g9o">${{ current_product.price | money_without_currency }}</div>
-              <div class="price-old-BsF">${{ current_product.compare_at_price | money_without_currency }}</div>
-            {% else %}
-              <!-- El producto no está en oferta, mostrar solo el precio original -->
-              <div class="price-g9o">${{ current_product.price | money_without_currency }}</div>
+    <div class="col-6 second-col">
+      <div class="product-price d-flex mb-5">
+        {% if product.compare_at_price > product.price %}
+          <!-- El producto está en oferta, mostrar el precio rebajado y el precio original tachado -->
+          <h4 class="price-discount">${{ current_product.price | money_without_currency }}</h4>
+          <h5 class="price-original">${{ current_product.compare_at_price | money_without_currency }}</h5>
+        {% else %}
+          <!-- El producto no está en oferta, mostrar solo el precio original -->
+          <div class="price-original">${{ current_product.price | money_without_currency }}</div>
+        {% endif %}
+      </div>
+
+      {% comment %} custom code color {% endcomment %}
+      <div class="mb-5">
+        <h3 class="color-custom mb-3">Color</h3>
+        <div class="custom-chip-colors custom-flex flex-start">
+          {% for variant in product.variants %}
+            {% if variant.available %}
+              <div onclick="changeVariantColor(this)" class="circle-color" data-color="{{ variant.option1 }}">
+                <div class="color {{ variant.option1 | handle }}">{{ variant.option1 }}</div>
+              </div>
             {% endif %}
-          </div>
-
-         
-
-            {% comment %} <div class="color-switcher-4w3">
-              <p class="color-C1f">Color</p>
-              <div class="color-j1b" id="color-switcher">
-                {% assign selected_variant_color = product.selected_or_first_available_variant.option1 %}
-            
-                {% for variant in product.variants %}
-                  {% if variant.available %}
-                    <input type="checkbox" id="color-{{ variant.id }}" class="color-checkbox" value="{{ variant.option1 }}" {% if variant.option1 == selected_variant_color %}checked{% endif %}>
-                    <label for="color-{{ variant.id }}" style="background-color: {{ variant.option1 }};"></label>
-                  {% endif %}
-                {% endfor %}
-            
-                <p class="pink-SaD selected-color-SaD"><span id="selected-color">{{ selected_variant_color }}</span></p>
-              </div>
-            </div> {% endcomment %}
-            <div class="color-switcher-4w3">
-              <p class="color-C1f">Color</p>
-              <div class="color-j1b" id="color-switcher">
-                {% assign selected_variant_color = product.selected_or_first_available_variant.option1 %}
-                <select class="please-select-L3K" aria-placeholder="Please select">
-                  {% for variant in product.variants %}
-                    {% if variant.available %}
-                      <option value="{{ variant.id }}">
-                        {{ variant.option1 }}
-                      </option>
-                    {% else %}
-                      <option value="{{ variant.id }}" disabled="disabled">
-                        {{ variant.option1 }}
-                      </option>
-                    {% endif %}
-                  {% endfor %}
-                </select>
-                <p class="pink-SaD selected-color-SaD"><span id="selected-color">{{ selected_variant_color }}</span></p>
-              </div>
-            </div>
-
-
-            <label for="product-option">Options</label>
-            <select class="product-select" name="id" id="variantSelect">
-              {% for variant in product.variants %}
-                <option {% if current_product.id == variant.id %}
-                  selected
-                {% endif %}
-                value="{{ variant.id }}"
-                data-color="{{ variant.option1 | default: '' }}"
-                data-size="{{ variant.option2 | default: '' }}">
-                  {{ variant.title }}
-                </option>
-              {% endfor %}
-            </select>
-                  
-
-            <div class="form-default-icon-agR">
-              <p class="label-JcR">Size</p>
-              
-              <div class="input-CSu">
-                <select class="please-select-L3K" aria-placeholder="Please select">
-                  {% for variant in product.variants %}
-                    {% if variant.available %}
-                      <option value="{{ variant.id }}">
-                        {{ variant.option2 }}
-                      </option>
-                    {% else %}
-                      <option value="{{ variant.id }}" disabled="disabled">
-                        {{ variant.option2 }}
-                      </option>
-                    {% endif %}
-                  {% endfor %}
-                </select>
-                <img class="down-chevron-sJ9" src="./assets/down-chevron.png"/>
-              </div>
-              
-            </div>
-          
-
-
-          <div class="sharing-AHF">
-            <div class="share--gFb">Share:</div>
-            <img class="facebook-12y" src="{{ section.settings.image_url_1| img_url: 'master'}}"/>
-            <img class="twitter-iTB" src="{{ section.settings.image_url_2 | img_url: 'master'}}"/>
-            <img class="pinterest-3EZ" src="{{ section.settings.image_url_3 |img_url: 'master' }}"/>
-          </div>
-          
-          <input type="hidden" name="id" value="{{ product.variants.first.id }}" />
-          <input min="1" type="number" id="quantity" name="quantity" value="1" style="visibility: hidden;"/>
-          <button class="btn-solid-regular-icon-ZTo" type="submit" value="Add to cart" >
-            <div class="btn-text-fWq">
-              <img class="cart-dCm" src="../assets/cart.png"/>
-              <div class="add-to-cart-m45">Add to cart</div>
-            </div>
-          </button>
+          {% endfor %}
         </div>
+      </div>
 
-        </form>
+      <select id="select-color">
+        {% for option in product.options %}
+          {% if option.name == 'Color' %}
+            {% for value in option.values %}
+              <option value="{{ value }}">{{ value }}</option>
+            {% endfor %}
+          {% endif %}
+        {% endfor %}
+      </select>
 
-        {% endform %}
+      {% comment %} custom code color {% endcomment %}
 
-        <div class="accordion-edf" id="variantInfo">
-          <span class="accordion-edf-sub-0">Color: </span>
-          <span class="accordion-edf-sub-1"> </span>
-          <span class="accordion-edf-sub-2"> Size:  </span>
-          <span class="accordion-edf-sub-3"></span>
+      <div class="variant-options mb-5">
+        <label for="product-option">Options</label>
+        <select class="product-select" name="id" id="variantSelect">
+          {% for variant in product.variants %}
+            <option
+              {% if current_product.id == variant.id %}
+                selected
+              {% endif %}
+              value="{{ variant.id }}"
+              data-color="{{ variant.option1 | default: '' }}"
+              data-size="{{ variant.option2 | default: '' }}"
+            >
+              {{ variant.title }}
+            </option>
+          {% endfor %}
+        </select>
+      </div>
+
+      <div class="accordion-edf mb-5" id="variantInfo">
+        <span class="accordion-edf-sub-0">Color: </span>
+        <span class="accordion-edf-sub-1"> </span>
+        <span class="accordion-edf-sub-2"> Size: </span>
+        <span class="accordion-edf-sub-3"></span>
+      </div>
+
+      <div class="sharing-AHF d-flex">
+        <div class="share--gFb">Share:</div>
+        <img class="social-media" src="{{ section.settings.image_url_1| img_url: 'small'}}">
+        <img class="social-media" src="{{ section.settings.image_url_2 | img_url: 'small'}}">
+        <img class="social-media" src="{{ section.settings.image_url_3 |img_url: 'small' }}">
+      </div>
+
+      <form method="post" action="/cart/add">
+        <input type="hidden" name="id" value="{{ product.variants.first.id }}">
+        <input min="1" type="number" id="quantity" name="quantity" value="1" style="visibility: hidden;"><br>
+        <div>
+          {% comment %} <img class="" src="{{ 'cart.png' | asset_url }}" alt="{{ image.alt }}"> {% endcomment %}
+          <input type="submit" value="Add to cart" class="btn">
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-6">
+      <div class="owl-container">
+        <div class="owl-theme" id="owl-min-carousel">
+          {% for image in product.images %}
+            <div class="item">
+              <img class="card card-custom" src="{{ image | img_url: 'master'}}" alt="{{ image.alt }}">
+            </div>
+          {% endfor %}
         </div>
       </div>
     </div>
@@ -154,14 +118,193 @@
 </div>
 
 <style>
-  .product-detail-page-mockup-T5T .product-card-RRb .auto-group-nnpz-SNd .product-gallery-zQ9 .images-preview-9Jy .video-6os {
-    {% for image in product.images %}
-      background-image: url('{{ image.url | img_url: 'master' }}')  
-    {% endfor %}
-    }
+  .product-title-custom {
+    font-weight: 900;
+    font-size: 46px;
+    line-height: 59.8px;
+    margin: 20px 0;
+  }
+
+  .card-img-top-custom {
+    width: 600px;
+    height: 600px;
+    border-radius: 4px;
+    margin-bottom: 10px;
+  }
+  .card-custom {
+    width: 104px;
+    height: 104px;
+    border-radius: 4px;
+    margin: 0 8px;
+  }
+
+  .price-discount {
+    font-family: Lato, 'Source Sans Pro';
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 31.2px;
+    color: #ff4242;
+    margin-right: 10px;
+  }
+
+  h5.price-original {
+    font-family: Lato, 'Source Sans Pro';
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 27px;
+    letter-spacing: 0em;
+    text-align: left;
+    color: #787a80;
+  }
+
+  .accordion-edf {
+    font-family: Lato;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 21px;
+    letter-spacing: 0em;
+    text-align: left;
+    font-family: Lato;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 21px;
+    letter-spacing: 0em;
+    text-align: left;
+  }
+
+  .share--gFb {
+    font-family: Lato;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 26px;
+    letter-spacing: 0em;
+    text-align: left;
+    color: #1e212c;
+  }
+
+  .social-media {
+    width: 20px;
+    height: 20px;
+    top: 0.83px;
+    left: 5.35px;
+    margin: 0 10px;
+    color: #787a80;
+  }
+
+  input.btn {
+    width: 244px;
+    height: 44px;
+    padding: 0px 32px;
+    border-radius: 4px;
+    gap: 10px;
+    background-color: #17696a;
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 700;
+    font-family: Lato, 'Source Sans Pro';
+    letter-spacing: 0.5px;
+    line-height: 44px;
+  }
+
+  .col-6.second-col {
+    display: flex;
+    align-items: self-start;
+    align-content: stretch;
+    flex-direction: column;
+    padding-left: 100px;
+  }
+  div#owl-min-carousel {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  button.owl-next {
+    margin-right: 25px !important;
+  }
+
+  .owl-next {
+    right: 0 !important;
+    outline: none !important;
+    border: 0 !important;
+    font-size: 100px !important;
+    position: absolute !important;
+    top: 30% !important;
+    background-color: transparent !important;
+    color: black !important;
+  }
+
+  button.owl-prev {
+    margin-left: 25px !important;
+  }
+
+  .owl-prev {
+    left: 0 !important;
+    outline: none !important;
+    border: 0 !important;
+    font-size: 100px !important;
+    position: absolute !important;
+    top: 30% !important;
+    background-color: transparent !important;
+    color: black !important;
+  }
+
+  .color-custom{
+    font-family: Lato;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 21px;
+    letter-spacing: 0em;
+    text-align: left;
+
+  }
+
+  .custom-chip-colors {
+    display: flex;
+    justify-content: flex-start;
+  }
+
+  .circle-color {
+    cursor: pointer;
+    margin-right: 10px;
+    border-radius: 50%;
+    overflow: hidden;
+    transition: border-width 0.2s ease-in-out;
+  }
+
+  .circle-color:hover {
+    border-width: 3px !important;
+  }
+
+  .circle-color.selected {
+    border-width: 3px;
+    border-color: #333; /* Puedes ajustar el color del borde para el estado seleccionado */
+  }
+
+  .color {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+  }
+
+  .beige {
+    background-color: #F5F5DC;
+  }
+
+  .blue {
+    background-color: #C0DDED;
+  }
+
+  .yellow{
+    background-color: yellow;
+  }
+
+
+  /* Agrega más clases de color según sea necesario */
+
 </style>
+
 <script>
-  document.getElementById('variantSelect').addEventListener('change', function() {
+  document.getElementById('variantSelect').addEventListener('change', function () {
     var select = document.getElementById('variantSelect');
     var variantInfo = document.getElementById('variantInfo');
 
@@ -179,33 +322,40 @@
       <span class="accordion-edf-sub-3">${size || ''}</span>
     `;
   });
+
+  function changeVariantColor(element) {
+        var selectedColor = element.getAttribute('data-color');
+        // Aquí puedes realizar acciones adicionales según sea necesario con el color seleccionado
+        console.log('Color seleccionado:', selectedColor);
+  }
 </script>
 
 {% schema %}
-  {
-    "name": "Product Page custom",
-    "class": "produc-sale-custom",
-    "settings": [
-      {
-        "type": "image_picker",
-        "label": "social media",
-        "id": "image_url_1"
-      }, {
-        "type": "image_picker",
-        "label": "social media",
-        "id": "image_url_2"
-      }, {
-        "type": "image_picker",
-        "label": "social media",
-        "id": "image_url_3"
-      }
-    ],
-    "presets": [
-      {
-        "name": "Product-page",
-        "category": "Personalizado"
-      }
-    ]
-
-  }
+{
+  "name": "Product Page custom",
+  "class": "produc-sale-custom",
+  "settings": [
+    {
+      "type": "image_picker",
+      "label": "social media",
+      "id": "image_url_1"
+    },
+    {
+      "type": "image_picker",
+      "label": "social media",
+      "id": "image_url_2"
+    },
+    {
+      "type": "image_picker",
+      "label": "social media",
+      "id": "image_url_3"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product-page",
+      "category": "Personalizado"
+    }
+  ]
+}
 {% endschema %}
