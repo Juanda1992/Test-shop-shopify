@@ -99,6 +99,14 @@
             "content": "",
             "page": ""
           }
+        },
+        "3a84e7bc-60e9-46a1-8e1b-36d25daf3028": {
+          "type": "image_picker",
+          "settings": {
+            "image_url_1": "shopify:\/\/shop_images\/facebook.png",
+            "image_url_2": "shopify:\/\/shop_images\/twitter.png",
+            "image_url_3": "shopify:\/\/shop_images\/pinterest.png"
+          }
         }
       },
       "block_order": [
@@ -114,7 +122,8 @@
         "collapsible-row-0",
         "collapsible-row-1",
         "collapsible-row-2",
-        "collapsible-row-3"
+        "collapsible-row-3",
+        "3a84e7bc-60e9-46a1-8e1b-36d25daf3028"
       ],
       "settings": {
         "enable_sticky_info": true,
