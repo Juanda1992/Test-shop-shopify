@@ -254,12 +254,18 @@
         "padding_top": 36,
         "padding_bottom": 28
       }
+    },
+    "12832569-2171-49a2-a52c-81636c4cd4ce": {
+      "type": "upsell",
+      "settings": {
+      }
     }
   },
   "order": [
     "main",
     "image-with-text",
     "multicolumn",
-    "related-products"
+    "related-products",
+    "12832569-2171-49a2-a52c-81636c4cd4ce"
   ]
 }
