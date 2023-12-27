@@ -119,6 +119,19 @@
           "settings": {
             "custom_liquid": "{% assign youtubeVideoUrl = product.metafields.custom.youtube_video %}\n\n{% if youtubeVideoUrl %}\n  {% assign videoParts = youtubeVideoUrl | split: '=' %}\n  {% assign youtubeVideoId = videoParts.last %}\n  \n  {% if youtubeVideoId %}\n    <iframe width=\"560\" height=\"315\" src=\"https:\/\/www.youtube.com\/embed\/{{ youtubeVideoId }}\" frameborder=\"0\" allowfullscreen><\/iframe>\n  {% else %}\n    <p>No se ha proporcionado un ID de video de YouTube válido para este producto.<\/p>\n  {% endif %}\n{% else %}\n  <p>No se ha proporcionado una URL de video de YouTube para este producto.<\/p>\n{% endif %}"
           }
+        },
+        "86fef817-5030-48bb-b2f9-a616128ca8ed": {
+          "type": "complementary",
+          "settings": {
+            "block_heading": "Pairs well with",
+            "make_collapsible_row": true,
+            "icon": "price_tag",
+            "product_list_limit": 10,
+            "products_per_page": 3,
+            "pagination_style": "counter",
+            "image_ratio": "square",
+            "enable_quick_add": false
+          }
         }
       },
       "block_order": [
@@ -137,7 +150,8 @@
         "collapsible-row-2",
         "collapsible-row-3",
         "3a84e7bc-60e9-46a1-8e1b-36d25daf3028",
-        "bf58a607-fc36-49bc-8d34-d1319cd6ae56"
+        "bf58a607-fc36-49bc-8d34-d1319cd6ae56",
+        "86fef817-5030-48bb-b2f9-a616128ca8ed"
       ],
       "settings": {
         "enable_sticky_info": true,
