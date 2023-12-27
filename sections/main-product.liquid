@@ -406,6 +406,7 @@
                 block: block,
                 share_link: share_url
               %}
+            {%  render 'share-social-media' %}
 
             {%- when 'variant_picker' -%}
               {% render 'product-variant-picker', product: product, block: block, product_form_id: product_form_id %}
@@ -683,6 +684,27 @@
         "type": "@app"
       },
       {
+        "type" : "image_picker",
+        "name": "Image picker",
+        "settings":[
+          {
+            "type": "image_picker",
+            "label": "social media",
+            "id": "image_url_1"
+          },
+          {
+            "type": "image_picker",
+            "label": "social media",
+            "id": "image_url_2"
+          },
+          {
+            "type": "image_picker",
+            "label": "social media",
+            "id": "image_url_3"
+          }
+        ]
+      },
+      {
         "type": "text",
         "name": "t:sections.main-product.blocks.text.name",
         "settings": [
@@ -866,21 +888,7 @@
         {
           "type": "paragraph",
           "content": "t:sections.main-product.blocks.share.settings.title_info.content"
-        },{
-              "type": "image_picker",
-              "label": "social media",
-              "id": "image_url_1"
-            },
-            { 
-              "type": "image_picker",
-              "label": "social media",
-              "id": "image_url_2"
-            },
-            {
-              "type": "image_picker",
-              "label": "social media",
-              "id": "image_url_3"
-            }
+        }
       ]
     },
     {
