@@ -259,6 +259,11 @@
       "type": "upsell",
       "settings": {
       }
+    },
+    "7f4c676c-19f8-4d53-a193-d2e46e95e33e": {
+      "type": "upsell",
+      "settings": {
+      }
     }
   },
   "order": [
@@ -266,6 +271,7 @@
     "image-with-text",
     "multicolumn",
     "related-products",
-    "12832569-2171-49a2-a52c-81636c4cd4ce"
+    "12832569-2171-49a2-a52c-81636c4cd4ce",
+    "7f4c676c-19f8-4d53-a193-d2e46e95e33e"
   ]
 }
