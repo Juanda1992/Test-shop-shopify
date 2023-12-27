@@ -1,0 +1,37 @@
+.globo-swatch-list {
+    display: flex;
+    flex-direction: column-reverse;
+}
+
+button#ProductSubmitButton-template--16347857715350__main {
+    letter-spacing: 0.5px;
+    height: 44px;
+    border-radius: 4px;
+    background-color: #17696A;
+    color: white;
+    width: 244px;
+    font-size: 14px;
+    font-weight: 400;
+    font-family: Lato;
+    padding: 0 32px;
+}
+
+button.shopify-payment-button__button.shopify-payment-button__button--unbranded {
+    visibility: hidden;
+}
+
+.dropdown-button-gsw {
+    border-radius: 4px;
+    width: 348px;
+    border-color: #D7DADD !important;
+    height: 44px;
+}
+
+ul.value.ul-globo-dropdown-option {
+    width: 348px;
+}
+
+div.globo-arrow-select {
+    left: 320px !important;
+    right: 248px !important;
+}

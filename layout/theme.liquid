@@ -253,6 +253,8 @@
     {% endstyle %}
 
     {{ 'base.css' | asset_url | stylesheet_tag }}
+    {{ 'custom.css' | asset_url | stylesheet_tag }}
+
 
     {%- unless settings.type_body_font.system? -%}
       <link rel="preload" as="font" href="{{ settings.type_body_font | font_url }}" type="font/woff2" crossorigin>
@@ -367,9 +369,9 @@
       <script src="{{ 'predictive-search.js' | asset_url }}" defer="defer"></script>
     {%- endif -%}
 
-  <script src="../assets/jquery.min.js"></script>
+  {% comment %} <script src="../assets/jquery.min.js"></script>
   <script src="../assets/owl.carousel.min.js"></script>
-  <script src="../assets/main.js"></script>
+  <script src="../assets/main.js"></script> {% endcomment %}
 
   <script src="{{ 'jquery.min.js' | asset_url }}" defer="defer"></script>
   <script src="{{ 'owl.carousel.min.js' | asset_url }}" defer="defer"></script>

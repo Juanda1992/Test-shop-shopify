@@ -61,6 +61,8 @@
         </div>
       {%- endfor -%}
 
+  
+
       <script type="application/json">
         {{ product.variants | json }}
       </script>
@@ -120,3 +122,19 @@
     </div>
   </div>
 </noscript>
+
+<div class="accordion-social-media">
+  <div class="accordion-edf mb-5" id="variantInfo">
+    <span class="accordion-edf-sub-0">Color: </span>
+    <span class="accordion-edf-sub-1"> </span>
+    <span class="accordion-edf-sub-2"> Size: </span>
+    <span class="accordion-edf-sub-3"></span>
+  </div>
+  
+  <div class="sharing-AHF d-flex">
+    <div class="share--gFb">Share:</div>
+    <img class="social-media" src="{{ section.settings.image_url_1| img_url: 'small'}}">
+    <img class="social-media" src="{{ section.settings.image_url_2 | img_url: 'small'}}">
+    <img class="social-media" src="{{ section.settings.image_url_3 |img_url: 'small' }}">
+  </div>
+</div>
