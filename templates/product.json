@@ -126,11 +126,17 @@
             "block_heading": "Pairs well with",
             "make_collapsible_row": true,
             "icon": "price_tag",
-            "product_list_limit": 10,
+            "product_list_limit": 8,
             "products_per_page": 3,
             "pagination_style": "counter",
             "image_ratio": "square",
             "enable_quick_add": false
+          }
+        },
+        "f270b0bf-9c1a-4a5e-94ce-0887bedbbc3e": {
+          "type": "custom_liquid",
+          "settings": {
+            "custom_liquid": "{% assign recommendedProducts = product.metafields.custom.products_list.recommended %}\n\n<div class=\"container h-100\">\n    {% if recommendedProducts.size > 0 %}\n      <div class=\"upsell-products\">\n        <h2>Productos Recomendados<\/h2>\n        <div class=\"card-deck\">\n          {% for productId in recommendedProducts %}\n            {% assign recommendedProduct = all_products[productId] %}\n            <div class=\"card\">\n              <img\n                class=\"card-img-top\"\n                src=\"{{ recommendedProduct.featured_image.src | product_img_url: 'medium' }}\"\n                alt=\"{{ recommendedProduct.title }}\"\n              >\n              <div class=\"card-body\">\n                <h5 class=\"card-title\">{{ recommendedProduct.title }}<\/h5>\n                <p class=\"card-text\">{{ recommendedProduct.price | money }}<\/p>\n                <a href=\"{{ recommendedProduct.url }}\" class=\"btn btn-primary\">Ver Detalles<\/a>\n              <\/div>\n            <\/div>\n          {% endfor %}\n        <\/div>\n      <\/div>\n    {% endif %}\n<\/div>"
           }
         }
       },
@@ -151,7 +157,8 @@
         "collapsible-row-3",
         "3a84e7bc-60e9-46a1-8e1b-36d25daf3028",
         "bf58a607-fc36-49bc-8d34-d1319cd6ae56",
-        "86fef817-5030-48bb-b2f9-a616128ca8ed"
+        "86fef817-5030-48bb-b2f9-a616128ca8ed",
+        "f270b0bf-9c1a-4a5e-94ce-0887bedbbc3e"
       ],
       "settings": {
         "enable_sticky_info": true,
