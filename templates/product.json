@@ -107,6 +107,12 @@
             "image_url_2": "shopify:\/\/shop_images\/twitter.png",
             "image_url_3": "shopify:\/\/shop_images\/pinterest.png"
           }
+        },
+        "bf58a607-fc36-49bc-8d34-d1319cd6ae56": {
+          "type": "custom_liquid",
+          "settings": {
+            "custom_liquid": "{% assign youtubeVideoId = product.metafields.custom.youtube_video %}\n{% if youtubeVideoId %}\n  <iframe width=\"560\" height=\"315\" src=\"https:\/\/www.youtube.com\/embed\/{{ youtubeVideoId }}\" frameborder=\"0\" allowfullscreen><\/iframe>\n{% else %}\n  <p>No se ha proporcionado un ID de video de YouTube para este producto.<\/p>\n{% endif %}"
+          }
         }
       },
       "block_order": [
@@ -123,7 +129,8 @@
         "collapsible-row-1",
         "collapsible-row-2",
         "collapsible-row-3",
-        "3a84e7bc-60e9-46a1-8e1b-36d25daf3028"
+        "3a84e7bc-60e9-46a1-8e1b-36d25daf3028",
+        "bf58a607-fc36-49bc-8d34-d1319cd6ae56"
       ],
       "settings": {
         "enable_sticky_info": true,
