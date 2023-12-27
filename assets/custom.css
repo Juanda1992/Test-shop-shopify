@@ -3,7 +3,21 @@
     flex-direction: column-reverse;
 }
 
-button#ProductSubmitButton {
+button#ProductSubmitButton-template--16347857715350__main {
+    letter-spacing: 0.5px;
+    height: 44px;
+    border-radius: 4px;
+    background-color: #17696A;
+    color: white;
+    width: 244px;
+    font-size: 14px;
+    font-weight: 400;
+    font-family: Lato;
+    padding: 0 32px;
+}
+
+
+button#ProductSubmitButton-template--16348096495766__main {
     letter-spacing: 0.5px;
     height: 44px;
     border-radius: 4px;

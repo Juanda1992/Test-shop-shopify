@@ -1,0 +1,33 @@
+{% assign recommendedProducts = product.metafields.custom.recommended_products %}
+
+{% if recommendedProducts.size > 0 %}
+  <div class="upsell-products">
+    <h2>Productos Recomendados</h2>
+    <div class="product-list">
+      {% for productId in recommendedProducts %}
+        {% assign recommendedProduct = all_products[productId] %}
+        <div class="product">
+          <img
+            src="{{ recommendedProduct.featured_image.src | product_img_url: 'medium' }}"
+            alt="{{ recommendedProduct.title }}"
+          >
+          <h3>{{ recommendedProduct.title }}</h3>
+          <p>{{ recommendedProduct.price | money }}</p>
+          <a href="{{ recommendedProduct.url }}">Ver Detalles</a>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Upsell",
+  "settings": [],
+  "presets": [
+    {
+      "name": "upsell"
+    }
+  ]
+}
+{% endschema %}
