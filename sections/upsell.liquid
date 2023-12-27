@@ -1,24 +1,30 @@
 {% assign recommendedProducts = product.metafields.custom.recommended_products %}
 
+{% assign recommendedProducts = product.metafields.custom.recommended_products %}
+
 {% if recommendedProducts.size > 0 %}
   <div class="upsell-products">
     <h2>Productos Recomendados</h2>
-    <div class="product-list">
+    <div class="card-deck">
       {% for productId in recommendedProducts %}
         {% assign recommendedProduct = all_products[productId] %}
-        <div class="product">
+        <div class="card">
           <img
+            class="card-img-top"
             src="{{ recommendedProduct.featured_image.src | product_img_url: 'medium' }}"
             alt="{{ recommendedProduct.title }}"
           >
-          <h3>{{ recommendedProduct.title }}</h3>
-          <p>{{ recommendedProduct.price | money }}</p>
-          <a href="{{ recommendedProduct.url }}">Ver Detalles</a>
+          <div class="card-body">
+            <h5 class="card-title">{{ recommendedProduct.title }}</h5>
+            <p class="card-text">{{ recommendedProduct.price | money }}</p>
+            <a href="{{ recommendedProduct.url }}" class="btn btn-primary">Ver Detalles</a>
+          </div>
         </div>
       {% endfor %}
     </div>
   </div>
 {% endif %}
+
 
 
 
