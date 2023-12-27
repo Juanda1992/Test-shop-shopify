@@ -29,6 +29,12 @@
           "settings": {
           }
         },
+        "d3858d03-5ea0-470f-82f0-a811a75dee69": {
+          "type": "custom_liquid",
+          "settings": {
+            "custom_liquid": "<h2 style=\"color:red; text-align:center;\">{{ product.metafields.custom.sale }}<\/h2>"
+          }
+        },
         "variant_picker": {
           "type": "variant_picker",
           "settings": {
@@ -113,12 +119,6 @@
           "settings": {
             "custom_liquid": "{% assign youtubeVideoUrl = product.metafields.custom.youtube_video %}\n\n{% if youtubeVideoUrl %}\n  {% assign videoParts = youtubeVideoUrl | split: '=' %}\n  {% assign youtubeVideoId = videoParts.last %}\n  \n  {% if youtubeVideoId %}\n    <iframe width=\"560\" height=\"315\" src=\"https:\/\/www.youtube.com\/embed\/{{ youtubeVideoId }}\" frameborder=\"0\" allowfullscreen><\/iframe>\n  {% else %}\n    <p>No se ha proporcionado un ID de video de YouTube válido para este producto.<\/p>\n  {% endif %}\n{% else %}\n  <p>No se ha proporcionado una URL de video de YouTube para este producto.<\/p>\n{% endif %}"
           }
-        },
-        "d3858d03-5ea0-470f-82f0-a811a75dee69": {
-          "type": "custom_liquid",
-          "settings": {
-            "custom_liquid": "<h2 style=\"color:red; text-align:center;\">{{ product.metafields.custom.sale }}<\/h2>"
-          }
         }
       },
       "block_order": [
@@ -126,6 +126,7 @@
         "title",
         "caption",
         "price",
+        "d3858d03-5ea0-470f-82f0-a811a75dee69",
         "variant_picker",
         "quantity_selector",
         "share",
@@ -136,8 +137,7 @@
         "collapsible-row-2",
         "collapsible-row-3",
         "3a84e7bc-60e9-46a1-8e1b-36d25daf3028",
-        "bf58a607-fc36-49bc-8d34-d1319cd6ae56",
-        "d3858d03-5ea0-470f-82f0-a811a75dee69"
+        "bf58a607-fc36-49bc-8d34-d1319cd6ae56"
       ],
       "settings": {
         "enable_sticky_info": true,
