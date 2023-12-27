@@ -41,6 +41,12 @@
           "settings": {
           }
         },
+        "share": {
+          "type": "share",
+          "settings": {
+            "share_label": "Share"
+          }
+        },
         "buy_buttons": {
           "type": "buy_buttons",
           "settings": {
@@ -94,13 +100,6 @@
             "page": ""
           }
         },
-        "share": {
-          "type": "share",
-          "disabled": true,
-          "settings": {
-            "share_label": "Share"
-          }
-        },
         "1bff6b64-7f6e-40db-9f65-d2b53195bbf2": {
           "type": "image",
           "settings": {
@@ -117,13 +116,13 @@
         "price",
         "variant_picker",
         "quantity_selector",
+        "share",
         "buy_buttons",
         "description",
         "collapsible-row-0",
         "collapsible-row-1",
         "collapsible-row-2",
         "collapsible-row-3",
-        "share",
         "1bff6b64-7f6e-40db-9f65-d2b53195bbf2"
       ],
       "settings": {
