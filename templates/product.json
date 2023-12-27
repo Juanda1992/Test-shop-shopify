@@ -32,7 +32,10 @@
         "variant_picker": {
           "type": "variant_picker",
           "settings": {
-            "picker_type": "button"
+            "picker_type": "button",
+            "image_url_1": "shopify:\/\/shop_images\/facebook.png",
+            "image_url_2": "shopify:\/\/shop_images\/twitter.png",
+            "image_url_3": "shopify:\/\/shop_images\/pinterest.png"
           }
         },
         "quantity_selector": {
